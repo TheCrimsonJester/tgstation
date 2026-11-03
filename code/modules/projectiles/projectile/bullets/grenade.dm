@@ -1,10 +1,8 @@
 // 40mm (Grenade Launcher
 
 /obj/projectile/bullet/a40mm
-	name ="40mm grenade"
+	ammo_type = /datum/ammo/bullet/a40mm
 	desc = "USE A WEEL GUN"
-	icon_state= "bolter"
-	damage = 60
 	embed_type = null
 	shrapnel_type = null
 	/// The devastation range on our grenade. Positive values determine the range in which the explosive will gib mobs and destroy plating.
@@ -31,9 +29,8 @@
 		new /obj/effect/temp_visual/crit(get_turf(living_target))
 
 /obj/projectile/bullet/a40mm/incendiary
-	name = "40mm incendiary grenade"
+	ammo_type = /datum/ammo/bullet/a40mm/incendiary
 	desc = "Hell is approaching."
-	damage = 10 // About the only mercy you're getting.
 	ex_light_range = 1
 	ex_flame_range = 4
 
@@ -46,9 +43,8 @@
 		new /obj/effect/hotspot(nearby_turf)
 
 /obj/projectile/bullet/a40mm/tear_gas
-	name = "40mm tear gas grenade"
+	ammo_type = /datum/ammo/bullet/a40mm/tear_gas
 	desc = "MY EYES!!"
-	damage = 10
 	ex_light_range = 0
 	ex_flame_range = 0
 

@@ -1,9 +1,5 @@
 /obj/projectile/temp
-	name = "freeze beam"
-	icon_state = "ice_2"
-	damage = 0
-	damage_type = BURN
-	armor_flag = ENERGY
+	ammo_type = /datum/ammo/special/temp
 	var/temperature = -50 // reduce the body temperature by 50 points
 
 /obj/projectile/temp/is_hostile_projectile()
@@ -32,8 +28,7 @@
 			reagents?.expose_temperature(temperature)
 
 /obj/projectile/temp/hot
-	name = "heat beam"
-	icon_state = "lava"
+	ammo_type = /datum/ammo/special/temp/hot
 	temperature = 100 // Raise the body temp by 100 points
 
 /obj/projectile/temp/hot/on_hit(atom/target, blocked = FALSE, pierce_hit)
@@ -44,8 +39,7 @@
 		living_target.adjust_wet_stacks(-10)
 
 /obj/projectile/temp/cryo
-	name = "cryo beam"
-	range = 9
+	ammo_type = /datum/ammo/special/temp/cryo
 	temperature = -350 // Single slow shot reduces temp greatly
 
 /obj/projectile/temp/cryo/on_hit(atom/target, blocked = 0, pierce_hit)
@@ -63,9 +57,7 @@
 	return ..()
 
 /obj/projectile/temp/pyro
-	name = "hot beam"
-	icon_state = "firebeam" // sets on fire, diff sprite!
-	range = 9
+	ammo_type = /datum/ammo/special/temp/pyro
 	temperature = 350
 
 /obj/projectile/temp/pyro/on_hit(atom/target, blocked, pierce_hit)

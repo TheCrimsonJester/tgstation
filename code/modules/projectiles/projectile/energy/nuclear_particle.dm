@@ -1,12 +1,7 @@
 //Nuclear particle projectile - a deadly side effect of fusion
 /obj/projectile/energy/nuclear_particle
-	name = "nuclear particle"
-	icon_state = "nuclear_particle"
+	ammo_type = /datum/ammo/energy/nuclear_particle
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
-	armor_flag = ENERGY
-	damage_type = TOX
-	damage = 10
-	speed = 2.5
 	hitsound = 'sound/items/weapons/emitter2.ogg'
 	impact_type = /obj/effect/projectile/impact/xray
 	var/static/list/particle_colors = list(

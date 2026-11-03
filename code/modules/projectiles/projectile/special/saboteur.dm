@@ -5,12 +5,7 @@
 		return TRUE
 
 /obj/projectile/energy/fisher
-	name = "attenuated kinetic force"
-	icon_state = null
-	damage = 0
-	damage_type = BRUTE
-	armor_flag = BOMB
-	range = 21
+	ammo_type = /datum/ammo/energy/fisher
 	projectile_phasing = PASSTABLE | PASSMOB | PASSMACHINE | PASSSTRUCTURE
 	hitscan = TRUE
 	hit_threshhold = LOW_OBJ_LAYER // required to be able to hit floor lights
@@ -32,6 +27,6 @@
 		target.balloon_alert(firer, "disrupted")
 
 /obj/projectile/energy/fisher/melee
-	range = 1
+	ammo_type = /datum/ammo/energy/fisher/melee
 	suppressed = SUPPRESSED_VERY
 	disrupt_duration = 25 SECONDS

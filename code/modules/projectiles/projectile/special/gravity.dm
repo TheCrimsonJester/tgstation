@@ -1,10 +1,7 @@
 /obj/projectile/gravityrepulse
-	name = "repulsion bolt"
+	ammo_type = /datum/ammo/special/gravityrepulse
 	icon = 'icons/effects/effects.dmi'
-	icon_state = "chronofield"
 	hitsound = 'sound/items/weapons/wave.ogg'
-	damage = 0
-	damage_type = BRUTE
 	color = COLOR_BLUE_LIGHT
 	var/turf/T
 	var/power = 4
@@ -33,12 +30,9 @@
 		new /obj/effect/temp_visual/gravpush(F)
 
 /obj/projectile/gravityattract
-	name = "attraction bolt"
+	ammo_type = /datum/ammo/special/gravityattract
 	icon = 'icons/effects/effects.dmi'
-	icon_state = "chronofield"
 	hitsound = 'sound/items/weapons/wave.ogg'
-	damage = 0
-	damage_type = BRUTE
 	color = "#FF6600"
 	var/turf/T
 	var/power = 4
@@ -66,12 +60,9 @@
 		new /obj/effect/temp_visual/gravpush(F)
 
 /obj/projectile/gravitychaos
-	name = "gravitational blast"
+	ammo_type = /datum/ammo/special/gravitychaos
 	icon = 'icons/effects/effects.dmi'
-	icon_state = "chronofield"
 	hitsound = 'sound/items/weapons/wave.ogg'
-	damage = 0
-	damage_type = BRUTE
 	color = COLOR_FULL_TONER_BLACK
 	var/turf/T
 	var/power = 4

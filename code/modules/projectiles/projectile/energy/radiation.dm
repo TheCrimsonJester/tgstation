@@ -1,8 +1,5 @@
 /obj/projectile/energy/radiation
-	name = "radiation beam"
-	icon_state = "declone"
-	damage = 20
-	damage_type = TOX
+	ammo_type = /datum/ammo/energy/radiation
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/green_laser
 
 	/// The chance to be irradiated on hit
@@ -14,5 +11,5 @@
 		radiation_pulse(target, max_range = 0, threshold = RAD_FULL_INSULATION)
 
 /obj/projectile/energy/radiation/weak
-	damage = 9
+	ammo_type = /datum/ammo/energy/radiation/weak
 	radiation_chance = 10

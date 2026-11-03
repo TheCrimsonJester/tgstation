@@ -1,9 +1,7 @@
 // Junk (Pipe Pistols and Pipeguns)
 
 /obj/projectile/bullet/junk
-	name = "junk bullet"
-	icon_state = "trashball"
-	damage = 40
+	ammo_type = /datum/ammo/bullet/junk
 	embed_type = /datum/embedding/bullet/junk
 	/// What biotype does our junk projectile especially harm?
 	var/extra_damage_mob_biotypes = MOB_ROBOTIC
@@ -40,16 +38,13 @@
 	stealthy_embed = FALSE
 
 /obj/projectile/bullet/incendiary/fire/junk
-	name = "burning oil"
-	damage = 40
+	ammo_type = /datum/ammo/bullet/junk/burning_oil
 	fire_stacks = 5
 	fireblast_radius = 2
 	suppressed = SUPPRESSED_NONE
 
 /obj/projectile/bullet/dart/ants
-	name = "a ball of ants"
-	icon_state = "trashball"
-	damage = 40 // Fuck your life.
+	ammo_type = /datum/ammo/bullet/dart/ants
 	inject_flags = INJECT_CHECK_PENETRATE_THICK // Fuck your modsuit.
 
 /obj/projectile/bullet/dart/ants/Initialize(mapload)
@@ -57,14 +52,11 @@
 	reagents.add_reagent(/datum/reagent/ants, damage) // Get fucked, asshole. Ants.
 
 /obj/projectile/bullet/junk/phasic
-	name = "junk phasic bullet"
-	icon_state = "gaussphase"
+	ammo_type = /datum/ammo/bullet/junk/phasic
 	projectile_phasing =  PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINE | PASSSTRUCTURE | PASSDOORS
 
 /obj/projectile/bullet/junk/shock
-	name = "bundle of live electrical parts"
-	icon_state = "tesla_projectile"
-	damage = 20
+	ammo_type = /datum/ammo/bullet/junk/shock
 	embed_type = null
 	shrapnel_type = null
 	extra_damage_added_damage = 30
@@ -77,16 +69,13 @@
 		victim.electrocute_act(damage, src, siemens_coeff = 1, flags = SHOCK_NOSTUN)
 
 /obj/projectile/bullet/junk/hunter
-	name = "junk hunter bullet"
-	icon_state = "gauss"
+	ammo_type = /datum/ammo/bullet/junk/hunter
 	extra_damage_mob_biotypes = MOB_ROBOTIC | MOB_BEAST | MOB_SPECIAL | MOB_MINING
 	extra_damage_multiplier = 0
 	extra_damage_added_damage = 80
 
 /obj/projectile/bullet/junk/ripper
-	name = "junk ripper bullet"
-	icon_state = "redtrac"
-	damage = 20
+	ammo_type = /datum/ammo/bullet/junk/ripper
 	embed_type = /datum/embedding/bullet/junk/ripper
 	wound_bonus = 20
 	exposed_wound_bonus = 30
@@ -102,8 +91,7 @@
 	rip_time = 1 SECONDS
 
 /obj/projectile/bullet/junk/reaper
-	name = "junk reaper bullet"
-	icon_state = null
+	ammo_type = /datum/ammo/bullet/junk/reaper
 	tracer_type = /obj/effect/projectile/tracer/sniper
 	impact_type = /obj/effect/projectile/impact/sniper
 	muzzle_type = /obj/effect/projectile/muzzle/sniper

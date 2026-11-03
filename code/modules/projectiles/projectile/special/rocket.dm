@@ -1,7 +1,5 @@
 /obj/projectile/bullet/gyro
-	name ="explosive bolt"
-	icon_state= "bolter"
-	damage = 50
+	ammo_type = /datum/ammo/bullet/gyro
 	embed_type = null
 	shrapnel_type = null
 
@@ -12,10 +10,8 @@
 
 /// PM9 standard HE rocket
 /obj/projectile/bullet/rocket
-	name = "\improper HE rocket"
+	ammo_type = /datum/ammo/bullet/rocket
 	desc = "Boom."
-	icon_state= "missile"
-	damage = 50
 	sharpness = NONE
 	embed_type = null
 	shrapnel_type = null
@@ -57,11 +53,8 @@ among other potential differences. This granularity is helpful for things like t
 
 /// PM9 HEAP rocket - the anti-anything missile you always craved.
 /obj/projectile/bullet/rocket/heap
-	name = "\improper HEAP rocket"
+	ammo_type = /datum/ammo/bullet/rocket/heap
 	desc = "I am become death."
-	icon_state = "84mm-heap"
-	damage = 80
-	armour_penetration = 100
 	dismemberment = 100
 	anti_armour_damage = 200
 
@@ -70,10 +63,8 @@ among other potential differences. This granularity is helpful for things like t
 
 /// PM9 weak rocket - just kind of a failure
 /obj/projectile/bullet/rocket/weak
-	name = "low-yield rocket"
+	ammo_type = /datum/ammo/bullet/rocket/weak
 	desc = "Boom, but less so."
-	icon_state = "low_yield_rocket"
-	damage = 30
 
 /obj/projectile/bullet/rocket/weak/do_boom(atom/target, blocked=0)
 	if(!isliving(target)) //if the target isn't alive, so is a wall or something
@@ -87,7 +78,7 @@ among other potential differences. This granularity is helpful for things like t
 * Explodes when it hits literally anything.
 */
 /obj/projectile/bullet/rocket/srm
-	name = "short range missile"
+	ammo_type = /datum/ammo/bullet/rocket/srm
 	desc = "Today's not your day, pal."
 
 /** PEP-6 Missile - Used by the PEP-6 Exosuit missile rack.
@@ -100,10 +91,8 @@ among other potential differences. This granularity is helpful for things like t
 * Does NOT explode if it hits any random mob, or any random object. Only if it is a subtype of one of the above valid atoms.
 */
 /obj/projectile/bullet/rocket/pep
-	name = "precise explosive missile"
+	ammo_type = /datum/ammo/bullet/rocket/pep
 	desc = "Human friendly, metal unfriendly."
-	icon_state = "low_yield_rocket"
-	damage = 30
 	anti_armour_damage = 80 //Doesn't (probably) kill borgs in one shot, but it will hurt
 	random_crits_enabled = FALSE //yeah, no
 
@@ -130,7 +119,7 @@ among other potential differences. This granularity is helpful for things like t
 
 //immediately hits firer
 /obj/projectile/bullet/rocket/reverse
-	name = "faulty rocket"
+	ammo_type = /datum/ammo/bullet/rocket/reverse
 
 /obj/projectile/bullet/rocket/reverse/fire(angle, atom/direct_target)
 	..()

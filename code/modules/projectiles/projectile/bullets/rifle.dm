@@ -1,51 +1,37 @@
 // .223 (M-90gl Carbine)
 
 /obj/projectile/bullet/a223
-	name = ".223 bullet"
-	damage = 35
-	armour_penetration = 30
+	ammo_type = /datum/ammo/bullet/rifle/a223
 	wound_bonus = -40
 
 /obj/projectile/bullet/a223/weak //centcom
-	damage = 20
+	ammo_type = /datum/ammo/bullet/rifle/a223/weak
 
 /obj/projectile/bullet/a223/phasic
-	name = ".223 phasic bullet"
-	icon_state = "gaussphase"
-	damage = 30
-	armour_penetration = 100
+	ammo_type = /datum/ammo/bullet/rifle/a223/phasic
 	projectile_phasing =  PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINE | PASSSTRUCTURE | PASSDOORS
 
 // .310 Strilka (Sakhno Rifle)
 
 /obj/projectile/bullet/strilka310
-	name = ".310 Strilka bullet"
-	damage = 60
-	armour_penetration = 10
+	ammo_type = /datum/ammo/bullet/rifle/strilka310
 	wound_bonus = -45
 	wound_falloff_tile = 0
 
 /obj/projectile/bullet/strilka310/surplus
-	name = ".310 Strilka surplus bullet"
-	weak_against_armour = TRUE //this is specifically more important for fighting carbons than fighting noncarbons. Against a simple mob, this is still a full force bullet
-	armour_penetration = 0
+	ammo_type = /datum/ammo/bullet/rifle/strilka310/surplus
 
 /obj/projectile/bullet/strilka310/enchanted
-	name = "enchanted .310 bullet"
-	damage = 20
-	stamina = 80
+	ammo_type = /datum/ammo/bullet/rifle/strilka310/enchanted
 
 /obj/projectile/bullet/strilka310/phasic
-	name = "phasic .310 bullet"
+	ammo_type = /datum/ammo/bullet/rifle/strilka310/phasic
 	projectile_phasing =  PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINE | PASSSTRUCTURE | PASSDOORS
 
 // Harpoons (Harpoon Gun)
 
 /obj/projectile/bullet/harpoon
-	name = "harpoon"
-	icon_state = "gauss"
-	damage = 60
-	armour_penetration = 50
+	ammo_type = /datum/ammo/bullet/rifle/harpoon
 	wound_bonus = -20
 	exposed_wound_bonus = 80
 	embed_type = /datum/embedding/harpoon
@@ -64,12 +50,8 @@
 
 // Rebar (Rebar Crossbow)
 /obj/projectile/bullet/rebar
-	name = "rebar"
-	icon_state = "rebar"
-	damage = 40
-	speed = 2.5
+	ammo_type = /datum/ammo/bullet/rifle/rebar
 	dismemberment = 1 //because a 1 in 100 chance to just blow someones arm off is enough to be cool but also not enough to be reliable
-	armour_penetration = 10
 	wound_bonus = -20
 	exposed_wound_bonus = 20
 	embed_type = /datum/embedding/rebar
@@ -90,11 +72,8 @@
 /obj/projectile/bullet/rebar/proc/handle_drop(datum/source, obj/item/ammo_casing/rebar/newcasing)
 
 /obj/projectile/bullet/rebar/syndie
-	name = "rebar"
-	icon_state = "rebar"
-	damage = 50
+	ammo_type = /datum/ammo/bullet/rifle/rebar/syndie
 	dismemberment = 2 //It's a budget sniper rifle.
-	armour_penetration = 35 //A bit better versus armor. Gets past anti laser armor or a sec vest, but doesnt get past proper bulletproof armor.
 	wound_bonus = 10
 	exposed_wound_bonus = 20
 	embed_falloff_tile = -3
@@ -112,14 +91,9 @@
 	rip_time = 2 SECONDS
 
 /obj/projectile/bullet/rebar/zaukerite
-	name = "zaukerite shard"
-	icon_state = "rebar_zaukerite"
-	damage = 60
-	speed = 1.6
+	ammo_type = /datum/ammo/bullet/rifle/rebar/zaukerite
 	dismemberment = 10
-	damage_type = TOX
 	eyeblur = 5
-	armour_penetration = 20 // not nearly as good, as its not as sharp.
 	wound_bonus = 10
 	exposed_wound_bonus = 40
 	embed_type = /datum/embedding/rebar_zaukerite
@@ -137,17 +111,12 @@
 	rip_time = 3 SECONDS
 
 /obj/projectile/bullet/rebar/hydrogen
-	name = "metallic hydrogen bolt"
-	icon_state = "rebar_hydrogen"
-	damage = 40 //if someone gets this they deserve to twotap with it, metal H2 is that rough to make.
-	speed = 3
+	ammo_type = /datum/ammo/bullet/rifle/rebar/hydrogen
 	projectile_piercing = PASSMOB|PASSVEHICLE
 	projectile_phasing = ~(PASSMOB|PASSVEHICLE)
 	max_pierces = 10
 	phasing_ignore_direct_target = TRUE
 	dismemberment = 0 //goes through clean.
-	damage_type = BRUTE
-	armour_penetration = 30 //very pointy.
 	wound_bonus = -100
 	exposed_wound_bonus = 0
 	shrapnel_type = /obj/item/ammo_casing/rebar/hydrogen
@@ -168,12 +137,8 @@
 	return ..()
 
 /obj/projectile/bullet/rebar/healium
-	name = "healium bolt"
-	icon_state = "rebar_healium"
-	damage = 0
+	ammo_type = /datum/ammo/bullet/rifle/rebar/healium
 	dismemberment = 0
-	damage_type = BRUTE
-	armour_penetration = 100
 	wound_bonus = -100
 	exposed_wound_bonus = -100
 	embed_falloff_tile = -3
@@ -191,13 +156,9 @@
 	rebar.heals_left = heals_left
 
 /obj/projectile/bullet/rebar/supermatter
-	name = "supermatter bolt"
-	icon_state = "rebar_supermatter"
-	damage = 0
+	ammo_type = /datum/ammo/bullet/rifle/rebar/supermatter
 	dismemberment = 0
-	damage_type = TOX
 	embed_type = null
-	armour_penetration = 100
 	shrapnel_type = /obj/item/ammo_casing/rebar/supermatter
 
 /obj/projectile/bullet/rebar/supermatter/on_hit(atom/target, blocked = 0, pierce_hit)
@@ -220,11 +181,7 @@
 
 /obj/projectile/bullet/paperball
 	desc = "Doink!"
-	damage = 1 // It's a damn toy.
-	range = 10
+	ammo_type = /datum/ammo/bullet/rifle/paperball
 	shrapnel_type = null
 	embed_type = null
-	name = "paper ball"
 	desc = "doink!"
-	damage_type = BRUTE
-	icon_state = "paperball"

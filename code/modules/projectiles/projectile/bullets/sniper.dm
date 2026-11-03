@@ -1,14 +1,10 @@
 // .50 BMG (Sniper)
 
 /obj/projectile/bullet/p50
-	name =".50 BMG bullet"
-	speed = 2.5
-	range = 400 // Enough to travel from one corner of the Z to the opposite corner and then some.
-	damage = 70
+	ammo_type = /datum/ammo/bullet/sniper/p50
 	paralyze = 100
 	dismemberment = 50
 	catastropic_dismemberment = TRUE
-	armour_penetration = 50
 	ignore_range_hit_prone_targets = TRUE
 	///Determines object damage.
 	var/object_damage = 80
@@ -26,15 +22,13 @@
 	return ..()
 
 /obj/projectile/bullet/p50/surplus
-	name =".50 BMG surplus bullet"
-	armour_penetration = 0
+	ammo_type = /datum/ammo/bullet/sniper/p50/surplus
 	paralyze = 0
 	dismemberment = 0
 	catastropic_dismemberment = FALSE
 
 /obj/projectile/bullet/p50/disruptor
-	name =".50 BMG disruptor bullet"
-	damage_type = STAMINA
+	ammo_type = /datum/ammo/bullet/sniper/p50/disruptor
 	paralyze = 0
 	dismemberment = 0
 	catastropic_dismemberment = FALSE
@@ -53,9 +47,7 @@
 	empulse(target, emp_radius, emp_radius, emp_source = src)
 
 /obj/projectile/bullet/p50/incendiary
-	name =".50 BMG incendiary bullet"
-	icon_state = "infernoshot"
-	damage_type = BURN
+	ammo_type = /datum/ammo/bullet/sniper/p50/incendiary
 	paralyze = 0
 	dismemberment = 0
 	catastropic_dismemberment = FALSE
@@ -72,10 +64,7 @@
 		new /obj/effect/hotspot(nearby_turf)
 
 /obj/projectile/bullet/p50/penetrator
-	name = ".50 BMG penetrator round"
-	icon_state = "gauss"
-	damage = 60
-	range = 50
+	ammo_type = /datum/ammo/bullet/sniper/p50/penetrator
 	projectile_piercing = PASSMOB|PASSVEHICLE
 	projectile_phasing = ~(PASSMOB|PASSVEHICLE)
 	phasing_ignore_direct_target = TRUE
@@ -85,17 +74,10 @@
 	object_damage = 0
 
 /obj/projectile/bullet/p50/penetrator/shuttle //Nukeop Shuttle Variety
-	name = ".50 BMG aggression dissuasion round"
-	icon_state = "gaussstrong"
-	damage = 25
-	speed = 3
-	range = 16
+	ammo_type = /datum/ammo/bullet/sniper/p50/penetrator/shuttle
 
 /obj/projectile/bullet/p50/marksman
-	name = ".50 BMG marksman round"
-	icon_state = null
-	damage = 50
-	range = 50
+	ammo_type = /datum/ammo/bullet/sniper/p50/marksman
 	paralyze = 0
 	tracer_type = /obj/effect/projectile/tracer/sniper
 	impact_type = /obj/effect/projectile/impact/sniper
@@ -122,14 +104,10 @@
 // 20x138mm bullet (lahti-l39) //
 
 /obj/projectile/bullet/mm20x138
-	name ="20x138mm bullet"
-	speed = 3.5
-	range = 400 // same as sniper rifle
-	damage = 400
+	ammo_type = /datum/ammo/bullet/sniper/mm20x138
 	paralyze = 100
 	dismemberment = 50
 	catastropic_dismemberment = TRUE
-	armour_penetration = 50
 	ignore_range_hit_prone_targets = TRUE
 	var/mecha_damage = 2 // this is a damage multiplier var
 	var/object_damage = 2 // same normal damage

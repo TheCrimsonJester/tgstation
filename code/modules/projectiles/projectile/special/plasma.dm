@@ -1,10 +1,5 @@
 /obj/projectile/plasma
-	name = "plasma blast"
-	icon_state = "plasmacutter"
-	damage_type = BURN
-	armor_flag = ENERGY
-	damage = 5
-	range = 3
+	ammo_type = /datum/ammo/special/plasma
 	dismemberment = 20
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
 	tracer_type = /obj/effect/projectile/tracer/plasma_cutter
@@ -27,19 +22,15 @@
 		return BULLET_ACT_FORCE_PIERCE
 
 /obj/projectile/plasma/adv
-	damage = 7
-	range = 4
+	ammo_type = /datum/ammo/special/plasma/adv
 	mine_range = 6
 
 /obj/projectile/plasma/adv/mech
-	damage = 10
-	range = 7
+	ammo_type = /datum/ammo/special/plasma/adv/mech
 	mine_range = 4
 
 /obj/projectile/plasma/turret
 	//Between normal and advanced for damage, made a beam so not the turret does not destroy glass
-	name = "plasma beam"
-	damage = 24
-	range = 7
+	ammo_type = /datum/ammo/special/plasma/turret
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 

@@ -1,7 +1,5 @@
 /obj/projectile/bullet/dart
-	name = "dart"
-	icon_state = "cbbolt"
-	damage = 6
+	ammo_type = /datum/ammo/bullet/dart
 	embed_type = null
 	shrapnel_type = null
 	var/inject_flags = null
@@ -35,8 +33,7 @@
 	reagents.add_reagent(/datum/reagent/toxin/acid/fluacid, 5)
 
 /obj/projectile/bullet/dart/syringe
-	name = "syringe"
-	icon_state = "syringeproj"
+	ammo_type = /datum/ammo/bullet/dart/syringe
 	/// Syringe stored by this projectile
 	var/obj/item/reagent_containers/syringe/inner_syringe
 

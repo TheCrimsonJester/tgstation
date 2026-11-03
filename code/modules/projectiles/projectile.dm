@@ -190,6 +190,11 @@
 	var/damage = 10
 	var/damage_type = BRUTE //BRUTE, BURN, TOX, OXY are the only things that should be in here
 
+	/// The ammo datum describing this projectile's behaviour. Instantiated from [ammo_type] during Initialize.
+	var/datum/ammo/ammo
+	/// Type path of the ammo datum to instantiate during Initialize. The datum is the source of truth for this projectile's stats.
+	var/datum/ammo/ammo_type
+
 	/// Defines what armor to use when it hits things.  Must be set to bullet, laser, energy, or bomb
 	var/armor_flag = BULLET
 	/// How much armor this projectile pierces.
@@ -274,10 +279,29 @@
 
 /obj/projectile/Initialize(mapload)
 	. = ..()
+	if (ammo_type)
+		ammo = new ammo_type()
+	apply_ammo_stats()
 	maximum_range = range
 	if (embed_type)
 		set_embed(embed_type)
 	add_traits(list(TRAIT_FREE_HYPERSPACE_MOVEMENT, TRAIT_FREE_HYPERSPACE_SOFTCORDON_MOVEMENT), INNATE_TRAIT)
+
+/// Copies the authoritative stats from our ammo datum onto the projectile.
+/// Does nothing when no ammo datum is set. Called once during Initialize.
+/obj/projectile/proc/apply_ammo_stats()
+	if(!ammo)
+		return
+	name = ammo.name
+	icon_state = ammo.icon_state
+	damage = ammo.damage
+	stamina = ammo.stamina
+	damage_type = ammo.damage_type
+	armor_flag = ammo.armor_flag
+	armour_penetration = ammo.armour_penetration
+	weak_against_armour = ammo.weak_against_armour
+	speed = ammo.speed
+	range = ammo.range
 
 /obj/projectile/Destroy()
 	if (hitscan)

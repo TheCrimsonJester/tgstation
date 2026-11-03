@@ -1,30 +1,22 @@
 // .45 (M1911 & C20r)
 
 /obj/projectile/bullet/c45
-	name = ".45 bullet"
-	damage = 30
+	ammo_type = /datum/ammo/bullet/smg/c45
 	wound_bonus = -10
 	wound_falloff_tile = -10
 
 /obj/projectile/bullet/c45/ap
-	name = ".45 armor-piercing bullet"
-	armour_penetration = 50
+	ammo_type = /datum/ammo/bullet/smg/c45/ap
 
 /obj/projectile/bullet/c45/hp
-	name = ".45 hollow point bullet"
-	damage = 50
-	weak_against_armour = TRUE
+	ammo_type = /datum/ammo/bullet/smg/c45/hp
 
 /obj/projectile/bullet/incendiary/c45
-	name = ".45 incendiary bullet"
-	damage = 25
+	ammo_type = /datum/ammo/bullet/smg/c45/incendiary
 	fire_stacks = 2
 
 /obj/projectile/bullet/c45/reaper
-	name = ".45 reaper pellet"
-	icon_state = null
-	damage = 50
-	armour_penetration = 40
+	ammo_type = /datum/ammo/bullet/smg/c45/reaper
 	tracer_type = /obj/effect/projectile/tracer/sniper
 	impact_type = /obj/effect/projectile/impact/sniper
 	muzzle_type = /obj/effect/projectile/muzzle/sniper
@@ -43,19 +35,15 @@
 // 4.6x30mm (Autorifles)
 
 /obj/projectile/bullet/c46x30mm
-	name = "4.6x30mm bullet"
-	damage = 20
+	ammo_type = /datum/ammo/bullet/smg/c46x30mm
 	wound_bonus = -5
 	exposed_wound_bonus = 5
 	embed_falloff_tile = -4
 
 /obj/projectile/bullet/c46x30mm/ap
-	name = "4.6x30mm armor-piercing bullet"
-	damage = 15
-	armour_penetration = 40
+	ammo_type = /datum/ammo/bullet/smg/c46x30mm/ap
 	embed_type = null
 
 /obj/projectile/bullet/incendiary/c46x30mm
-	name = "4.6x30mm incendiary bullet"
-	damage = 15
+	ammo_type = /datum/ammo/bullet/smg/c46x30mm/incendiary
 	fire_stacks = 1

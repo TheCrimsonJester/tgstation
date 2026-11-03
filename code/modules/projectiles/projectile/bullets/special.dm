@@ -1,14 +1,11 @@
 // Honker
 
 /obj/projectile/bullet/honker
-	name = "banana"
-	damage = 0
+	ammo_type = /datum/ammo/bullet/honker
 	movement_type = FLYING
 	projectile_piercing = ALL
 	hitsound = 'sound/items/bikehorn.ogg'
 	icon = 'icons/obj/service/hydroponics/harvest.dmi'
-	icon_state = "banana"
-	range = 200
 	embed_type = null
 	shrapnel_type = null
 
@@ -28,7 +25,7 @@
 // Mime
 
 /obj/projectile/bullet/mime
-	damage = 40
+	ammo_type = /datum/ammo/bullet/mime
 
 /obj/projectile/bullet/mime/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
@@ -43,10 +40,8 @@
 
 /// Marksman Shot
 /obj/projectile/bullet/marksman
-	name = "marksman nanoshot"
-	icon_state = null
+	ammo_type = /datum/ammo/bullet/marksman
 	hitscan = TRUE
-	damage = 30
 	tracer_type = /obj/effect/projectile/tracer/solar
 	muzzle_type = /obj/effect/projectile/muzzle/bullet
 	impact_type = /obj/effect/projectile/impact/sniper
@@ -78,10 +73,7 @@
 
 /// Marksman Coin
 /obj/projectile/bullet/coin
-	name = "marksman coin"
-	icon_state = "coinshot"
-	speed = 0.33
-	damage = 5
+	ammo_type = /datum/ammo/bullet/coin
 	color = "#dbdd4c"
 
 	/// Save the turf we're aiming for for future use

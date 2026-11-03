@@ -1,5 +1,5 @@
 /obj/projectile/beam/mindflayer
-	name = "flayer ray"
+	ammo_type = /datum/ammo/laser/mindflayer
 
 /obj/projectile/beam/mindflayer/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()

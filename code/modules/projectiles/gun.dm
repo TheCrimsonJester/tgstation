@@ -62,6 +62,10 @@
 	var/firing_burst = 0 //Prevent the weapon from firing again while already firing
 	/// firing cooldown, true if this gun shouldn't be allowed to manually fire
 	var/fire_cd = 0
+	/// Centralized firing controller (tuning and math). See gun_system.dm.
+	var/datum/gun_system/gun_system
+	/// Attachments currently installed, keyed by slot.
+	var/list/obj/item/attachable/attachments
 	var/weapon_weight = WEAPON_LIGHT
 	///Can we hold up our target with this? Default to yes
 	var/can_hold_up = TRUE
@@ -121,6 +125,8 @@
 	if(ispath(pin))
 		pin = new pin
 		pin.gun_insert(new_gun = src, starting = TRUE)
+
+	gun_system = new /datum/gun_system(src)
 
 	add_seclight_point()
 	add_bayonet_point()
@@ -202,6 +208,11 @@
 				. += span_info("[pin] looks like [pin.p_theyre()] firmly locked in, [pin.p_they()] look[pin.p_s()] impossible to remove.")
 		else
 			. += "It doesn't have a <b>firing pin</b> installed, and won't fire."
+
+	if(LAZYLEN(attachments))
+		. += span_notice("Attached:")
+		for(var/obj/item/attachable/attachment as anything in attachments)
+			. += "  - \a [attachment]"
 
 	var/healthpercent = (atom_integrity/max_integrity) * 100
 	switch(healthpercent)
@@ -507,11 +518,7 @@
 		firing_burst = FALSE
 		return FALSE
 
-	var/sprd = 0
-	if(randomspread)
-		sprd = round((rand(0, 1) - 0.5) * DUALWIELD_PENALTY_EXTRA_MULTIPLIER * (random_spread))
-	else //Smart spread
-		sprd = round((((burst_spread_mult/burst_size) * iteration) - (0.5 + (burst_spread_mult * 0.25))) * (random_spread))
+	var/sprd = get_burst_spread(random_spread, burst_spread_mult, iteration)
 	before_firing(target,user)
 	if(!chambered.fire_casing(target, user, params, 0, suppressed, zone_override, sprd, src))
 		shoot_with_empty_chamber(user)
@@ -536,10 +543,7 @@
  * The clamped recoil value after applying all modifiers.
  */
 /obj/item/gun/proc/calculate_recoil(mob/living/user, recoil_amount = 0)
-	var/used_min_recoil = min_recoil
-	if(user.client)
-		used_min_recoil *= (user.client.prefs.read_preference(/datum/preference/numeric/min_recoil_multiplier) / 100)
-	return clamp(recoil_amount, used_min_recoil, INFINITY)
+	return gun_system.calculate_recoil(user, recoil_amount)
 
 /**
  * Simulates firearm recoil and applies camera feedback when firing.
@@ -550,13 +554,7 @@
  * * firing_angle - The firing direction used to determine camera kick direction.
  */
 /obj/item/gun/proc/simulate_recoil(mob/living/user, recoil_amount = 0, firing_angle)
-	var/total_recoil = calculate_recoil(user, recoil_amount)
-
-	var/actual_angle = firing_angle + rand(-recoil_deviation, recoil_deviation) + 180
-	if(actual_angle > 360)
-		actual_angle -= 360
-	if(total_recoil > 0)
-		recoil_camera(user, total_recoil + 1, (total_recoil * recoil_backtime_multiplier)+1, total_recoil, actual_angle)
+	gun_system.simulate_recoil(user, recoil_amount, firing_angle)
 
 ///returns true if the gun successfully fires
 /obj/item/gun/proc/process_fire(atom/target, mob/living/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
@@ -577,14 +575,11 @@
 	//Vary by at least this much
 	var/randomized_bonus_spread = rand(base_bonus_spread, bonus_spread)
 	var/randomized_gun_spread = spread ? rand(0, spread) : 0
-	var/total_random_spread = max(0, randomized_bonus_spread + randomized_gun_spread)
+	var/total_random_spread = max(0, randomized_bonus_spread + randomized_gun_spread - gun_system.get_attachment_accuracy())
 	var/burst_spread_mult = rand()
 
-	var/modified_burst_delay = burst_delay
-	var/modified_fire_delay = fire_delay
-	if(user && HAS_TRAIT(user, TRAIT_DOUBLE_TAP))
-		modified_burst_delay = ROUND_UP(burst_delay * 0.5)
-		modified_fire_delay = ROUND_UP(fire_delay * 0.5)
+	var/modified_burst_delay = gun_system.get_burst_delay(user)
+	var/modified_fire_delay = gun_system.get_fire_delay(user)
 
 	if(burst_size > 1)
 		firing_burst = TRUE
@@ -620,6 +615,54 @@
 
 /obj/item/gun/proc/reset_fire_cd()
 	fire_cd = FALSE
+
+/// Whether the given attachment can be installed on this gun.
+/obj/item/gun/proc/can_attach(obj/item/attachable/attachment, mob/user)
+	if(!istype(attachment))
+		return FALSE
+	if(LAZYACCESS(attachments, attachment.slot))
+		balloon_alert(user, "slot already occupied!")
+		return FALSE
+	return TRUE
+
+/// Installs an attachment into its slot. Returns TRUE on success.
+/obj/item/gun/proc/attach_attachment(obj/item/attachable/attachment, mob/user)
+	if(!can_attach(attachment, user))
+		return FALSE
+	if(!user.transferItemToLoc(attachment, src))
+		return FALSE
+	LAZYSET(attachments, attachment.slot, attachment)
+	attachment.attached_to = src
+	attachment.on_attach(src, user)
+	update_appearance()
+	return TRUE
+
+/// Removes an installed attachment. Returns TRUE on success.
+/obj/item/gun/proc/remove_attachment(obj/item/attachable/attachment, mob/user)
+	if(!LAZYACCESS(attachments, attachment.slot))
+		return FALSE
+	LAZYREMOVE(attachments, attachment.slot)
+	attachment.attached_to = null
+	attachment.on_detach(src, user)
+	attachment.forceMove(drop_location())
+	update_appearance()
+	return TRUE
+
+/obj/item/gun/update_overlays()
+	. = ..()
+	if(!LAZYLEN(attachments))
+		return
+	for(var/obj/item/attachable/attachment as anything in attachments)
+		var/attachment_overlay_icon = attachment.overlay_icon || attachment.icon
+		var/attachment_overlay_state = attachment.overlay_icon_state || attachment.icon_state
+		if(!attachment_overlay_icon || !attachment_overlay_state)
+			continue
+		var/mutable_appearance/attachment_overlay = mutable_appearance(attachment_overlay_icon, attachment_overlay_state)
+		if(attachment.offset_x)
+			attachment_overlay.pixel_w = attachment.offset_x
+		if(attachment.offset_y)
+			attachment_overlay.pixel_z = attachment.offset_y
+		. += attachment_overlay
 
 /obj/item/gun/screwdriver_act(mob/living/user, obj/item/I)
 	. = ..()

@@ -1,10 +1,5 @@
 /obj/projectile/magic
-	name = "bolt"
-	icon_state = "energy"
-	damage = 0 // MOST magic projectiles pass the "not a hostile projectile" test, despite many having negative effects
-	damage_type = OXY
-	armour_penetration = 100
-	armor_flag = NONE
+	ammo_type = /datum/ammo/magic
 	/// determines what type of antimagic can block the spell projectile
 	var/antimagic_flags = MAGIC_RESISTANCE
 	/// determines the drain cost on the antimagic item
@@ -29,8 +24,7 @@
 
 /// Straight up kills you, unless you're undead
 /obj/projectile/magic/death
-	name = "bolt of death"
-	icon_state = "pulse1_bl"
+	ammo_type = /datum/ammo/magic/death
 
 /obj/projectile/magic/death/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
@@ -56,8 +50,7 @@
 
 /// Brings you back from the dead or makes you back into the dead if you're undead
 /obj/projectile/magic/resurrection
-	name = "bolt of resurrection"
-	icon_state = "ion"
+	ammo_type = /datum/ammo/magic/resurrection
 
 /obj/projectile/magic/resurrection/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
@@ -83,8 +76,7 @@
 
 /// Teleports you somewhere randomly within range
 /obj/projectile/magic/teleport
-	name = "bolt of teleportation"
-	icon_state = "bluespace"
+	ammo_type = /datum/ammo/magic/teleport
 	var/inner_tele_radius = 0
 	var/outer_tele_radius = 6
 
@@ -105,8 +97,7 @@
 
 /// Teleports you somewhere on the station where the local conditions won't kill you
 /obj/projectile/magic/safety
-	name = "bolt of safety"
-	icon_state = "bluespace"
+	ammo_type = /datum/ammo/magic/safety
 
 /obj/projectile/magic/safety/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
@@ -124,8 +115,7 @@
 
 /// Turns walls into doors, or opens doors
 /obj/projectile/magic/door
-	name = "bolt of door creation"
-	icon_state = "energy"
+	ammo_type = /datum/ammo/magic/door
 	var/list/door_types = list(/obj/structure/mineral_door/wood, /obj/structure/mineral_door/iron, /obj/structure/mineral_door/silver, /obj/structure/mineral_door/gold, /obj/structure/mineral_door/uranium, /obj/structure/mineral_door/sandstone, /obj/structure/mineral_door/transparent/plasma, /obj/structure/mineral_door/transparent/diamond)
 
 /obj/projectile/magic/door/on_hit(atom/target, blocked = 0, pierce_hit)
@@ -151,9 +141,7 @@
 
 /// Turns mobs into other mobs, or plants into other plants
 /obj/projectile/magic/change
-	name = "bolt of change"
-	icon_state = "ice_1"
-	damage_type = BURN
+	ammo_type = /datum/ammo/magic/change
 	/// If set, this projectile will only do a certain wabbajack effect
 	var/set_wabbajack_effect
 	/// If set, this projectile will only pass certain changeflags to wabbajack
@@ -174,9 +162,7 @@
 
 /// Makes objects come to life
 /obj/projectile/magic/animate
-	name = "bolt of animation"
-	icon_state = "red_1"
-	damage_type = BURN
+	ammo_type = /datum/ammo/magic/animate
 
 /obj/projectile/magic/animate/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
@@ -189,24 +175,17 @@
 
 /// Slices you
 /obj/projectile/magic/spellblade
-	name = "blade energy"
-	icon_state = "lavastaff"
-	damage = 15
-	damage_type = BURN
+	ammo_type = /datum/ammo/magic/spellblade
 	dismemberment = 50
 
 /// Generic magic bullet
 /obj/projectile/magic/arcane_barrage
-	name = "arcane bolt"
-	icon_state = "arcane_barrage"
-	damage = 20
-	damage_type = BURN
+	ammo_type = /datum/ammo/magic/arcane_barrage
 	hitsound = 'sound/items/weapons/barragespellhit.ogg'
 
 /// Welds targets inside lockers, and throws the locker
 /obj/projectile/magic/locker
-	name = "locker bolt"
-	icon_state = "locker"
+	ammo_type = /datum/ammo/magic/locker
 	var/weld = TRUE
 	var/created = FALSE //prevents creation of more then one locker if it has multiple hits
 	var/locker_suck = TRUE
@@ -294,8 +273,7 @@
 
 /// Throws the target far away
 /obj/projectile/magic/flying
-	name = "bolt of flying"
-	icon_state = "flight"
+	ammo_type = /datum/ammo/magic/flying
 
 /obj/projectile/magic/flying/on_hit(mob/living/target, blocked = 0, pierce_hit)
 	. = ..()
@@ -305,8 +283,7 @@
 
 /// Marks you for death, rewards the caster if they kill you
 /obj/projectile/magic/bounty
-	name = "bolt of bounty"
-	icon_state = "bounty"
+	ammo_type = /datum/ammo/magic/bounty
 
 /obj/projectile/magic/bounty/on_hit(mob/living/target, blocked = 0, pierce_hit)
 	. = ..()
@@ -315,8 +292,7 @@
 
 /// Makes whatever it hits immune to magic, except for the magic that makes them immune to magic
 /obj/projectile/magic/antimagic
-	name = "bolt of antimagic"
-	icon_state = "antimagic"
+	ammo_type = /datum/ammo/magic/antimagic
 
 /obj/projectile/magic/antimagic/on_hit(mob/living/target, blocked = 0, pierce_hit)
 	. = ..()
@@ -325,8 +301,7 @@
 
 /// Throws the target at the caster
 /obj/projectile/magic/fetch
-	name = "bolt of fetching"
-	icon_state = "fetch"
+	ammo_type = /datum/ammo/magic/fetch
 
 /obj/projectile/magic/fetch/on_hit(mob/living/target, blocked = 0, pierce_hit)
 	. = ..()
@@ -336,8 +311,7 @@
 
 /// Scrambles the languages of the target
 /obj/projectile/magic/babel
-	name = "bolt of babel"
-	icon_state = "babel"
+	ammo_type = /datum/ammo/magic/babel
 
 /obj/projectile/magic/babel/on_hit(mob/living/carbon/target, blocked = 0, pierce_hit)
 	. = ..()
@@ -347,8 +321,7 @@
 
 /// Hurts the target and uses their life energy to recharge the spells they probably don't have
 /obj/projectile/magic/necropotence
-	name = "bolt of necropotence"
-	icon_state = "necropotence"
+	ammo_type = /datum/ammo/magic/necropotence
 
 /obj/projectile/magic/necropotence/on_hit(mob/living/target, blocked = 0, pierce_hit)
 	. = ..()
@@ -365,8 +338,7 @@
 
 /// Puts someone else in control of the target
 /obj/projectile/magic/wipe
-	name = "bolt of possession"
-	icon_state = "wipe"
+	ammo_type = /datum/ammo/magic/wipe
 
 /obj/projectile/magic/wipe/on_hit(mob/living/carbon/target, blocked = 0, pierce_hit)
 	. = ..()
@@ -404,7 +376,7 @@
 
 /// Gives magic projectiles an area of effect radius that will bump into any nearby mobs
 /obj/projectile/magic/aoe
-	damage = 0
+	ammo_type = /datum/ammo/magic/aoe
 
 	/// The AOE radius that the projectile will trigger on people.
 	var/trigger_range = 1
@@ -455,11 +427,7 @@
 
 /// Arcs a chain of lightning from hit targets
 /obj/projectile/magic/aoe/lightning
-	name = "lightning bolt"
-	icon_state = "tesla_projectile" //Better sprites are REALLY needed and appreciated!~
-	damage = 15
-	damage_type = BURN
-	speed = 3.5
+	ammo_type = /datum/ammo/magic/aoe/lightning
 
 	/// The power of the zap itself when it electrocutes someone
 	var/zap_power = 2e4
@@ -490,10 +458,7 @@
 
 /// Classic exploding fireball
 /obj/projectile/magic/fireball
-	name = "bolt of fireball"
-	icon_state = "fireball"
-	damage = 10
-	damage_type = BURN
+	ammo_type = /datum/ammo/magic/fireball
 
 	/// Heavy explosion range of the fireball
 	var/exp_heavy = 0
@@ -527,10 +492,7 @@
 
 /// Slow moving, homing, stunning projectile
 /obj/projectile/magic/aoe/magic_missile
-	name = "magic missile"
-	icon_state = "magicm"
-	range = 100
-	speed = 0.2
+	ammo_type = /datum/ammo/magic/aoe/magic_missile
 	trigger_range = 0
 	can_only_hit_target = TRUE
 	paralyze = 6 SECONDS
@@ -541,22 +503,17 @@
 	trail_icon_state = "magicmd"
 
 /obj/projectile/magic/aoe/magic_missile/lesser
+	ammo_type = /datum/ammo/magic/aoe/magic_missile/lesser
 	color = "red" //Looks more culty this way
-	range = 10
 
 /// Delivers a powerful slap and converts turfs to cult turfs
 /obj/projectile/magic/aoe/juggernaut
-	name = "Gauntlet Echo"
-	icon_state = "cultfist"
+	ammo_type = /datum/ammo/magic/aoe/juggernaut
 	alpha = 180
-	damage = 30
-	damage_type = BRUTE
 	knockdown = 50
 	hitsound = 'sound/items/weapons/punch3.ogg'
 	trigger_range = 0
 	antimagic_flags = MAGIC_RESISTANCE_HOLY
-	range = 105
-	speed = 0.15
 
 /obj/projectile/magic/aoe/juggernaut/on_hit(atom/target, blocked = 0, pierce_hit)
 	. = ..()
@@ -575,33 +532,23 @@
 //still magic related, but a different path
 /// Makes you cold
 /obj/projectile/temp/chill
-	name = "bolt of chills"
-	icon_state = "ice_2"
-	damage_type = BURN
-	armour_penetration = 100
+	ammo_type = /datum/ammo/special/temp/chill
 	temperature = -200 // Cools you down greatly per hit
 
 /// Doesn't do anything
 /obj/projectile/magic/nothing
-	name = "bolt of nothing"
+	ammo_type = /datum/ammo/magic/nothing
 
 /// Homing projectile
 /obj/projectile/magic/spellcard
-	name = "enchanted card"
+	ammo_type = /datum/ammo/magic/spellcard
 	desc = "A piece of paper enchanted to give it extreme durability and stiffness, along with a very hot burn to anyone unfortunate enough to get hit by a charged one."
-	icon_state = "spellcard"
-	damage_type = BURN
-	damage = 2
 	antimagic_charge_cost = 0 // since the cards gets spammed like a shotgun
 
 /// a shrink ray that shrinks stuff, which grows back after a short while.
 /obj/projectile/magic/shrink
-	name = "shrink ray"
-	icon_state = "blue_laser"
+	ammo_type = /datum/ammo/magic/shrink
 	hitsound = 'sound/items/weapons/shrink_hit.ogg'
-	damage = 0
-	damage_type = STAMINA
-	armor_flag = ENERGY
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/shrink
 	light_color = LIGHT_COLOR_BLUE
 	var/shrink_time = -1

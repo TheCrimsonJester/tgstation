@@ -1,13 +1,8 @@
 /obj/projectile/meteor
-	name = "meteor"
+	ammo_type = /datum/ammo/special/meteor
 	icon = 'icons/obj/meteor.dmi'
-	icon_state = "small1"
-	damage = 90
 	paralyze = 100
 	dismemberment = 90
-	armour_penetration = 100
-	damage_type = BRUTE
-	armor_flag = BULLET
 	mouse_opacity = MOUSE_OPACITY_ICON
 	obj_flags = NONE
 

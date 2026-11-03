@@ -311,6 +311,13 @@
 	drop_sound = 'sound/items/handling/gun/ballistics/magazine/magazine_drop1.ogg'
 	pickup_sound = 'sound/items/handling/gun/ballistics/magazine/magazine_pickup1.ogg'
 
+/// Returns the ammo datum this magazine's rounds resolve to, derived from its
+/// [ammo_type] casing's projectile's ammo datum (see ammo_datums.dm).
+/obj/item/ammo_box/magazine/proc/get_default_ammo()
+	var/obj/item/ammo_casing/casing_type = ammo_type
+	var/obj/projectile/projectile_type = initial(casing_type.projectile_type)
+	return initial(projectile_type.ammo_type)
+
 ///Count of number of bullets in the magazine
 /obj/item/ammo_box/magazine/proc/ammo_count(countempties = TRUE)
 	var/boolets = 0

@@ -1,8 +1,6 @@
 /obj/projectile/bullet/dnainjector
-	name = "\improper DNA injector"
-	icon_state = "syringeproj"
+	ammo_type = /datum/ammo/bullet/dnainjector
 	var/obj/item/dnainjector/injector
-	damage = 5
 	hitsound_wall = /datum/sound_effect/shatter
 	embed_type = null
 	shrapnel_type = null

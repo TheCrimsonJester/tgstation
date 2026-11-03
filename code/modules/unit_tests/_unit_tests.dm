@@ -106,6 +106,7 @@
 #include "ablative_hud.dm"
 #include "achievements.dm"
 #include "alerts.dm"
+#include "ammo_datum.dm"
 #include "anchored_mobs.dm"
 #include "anonymous_themes.dm"
 #include "antag_conversion.dm"

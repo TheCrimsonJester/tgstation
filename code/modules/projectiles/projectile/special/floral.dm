@@ -1,7 +1,5 @@
 /obj/projectile/energy/flora
-	damage = 0
-	damage_type = TOX
-	armor_flag = ENERGY
+	ammo_type = /datum/ammo/energy/flora
 
 /obj/projectile/energy/flora/on_hit(atom/target, blocked, pierce_hit)
 	if(!isliving(target))
@@ -23,8 +21,7 @@
 	return
 
 /obj/projectile/energy/flora/mut
-	name = "alpha somatoray"
-	icon_state = "energy"
+	ammo_type = /datum/ammo/energy/flora/mut
 
 /obj/projectile/energy/flora/mut/on_hit_plant_effect(mob/living/hit_plant)
 	if(prob(85))
@@ -50,15 +47,13 @@
 		carbon_plant.domutcheck()
 
 /obj/projectile/energy/flora/yield
-	name = "beta somatoray"
-	icon_state = "energy2"
+	ammo_type = /datum/ammo/energy/flora/yield
 
 /obj/projectile/energy/flora/yield/on_hit_plant_effect(mob/living/hit_plant)
 	hit_plant.set_nutrition(min(hit_plant.nutrition + 30, NUTRITION_LEVEL_FULL))
 
 /obj/projectile/energy/flora/evolution
-	name = "gamma somatoray"
-	icon_state = "energy3"
+	ammo_type = /datum/ammo/energy/flora/evolution
 
 /obj/projectile/energy/flora/evolution/on_hit_plant_effect(mob/living/hit_plant)
 	hit_plant.show_message(span_notice("The radiation beam leaves you feeling disoriented!"))

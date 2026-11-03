@@ -2,16 +2,11 @@
 	name = "curse arm"
 
 /obj/projectile/curse_hand
-	name = "curse hand"
-	icon_state = "cursehand0"
+	ammo_type = /datum/ammo/special/curse_hand
 	base_icon_state = "cursehand"
 	hitsound = 'sound/effects/curse/curse4.ogg'
 	layer = LARGE_MOB_LAYER
-	damage_type = BURN
-	damage = 10
 	paralyze = 20
-	speed = 0.5
-	range = 16
 	var/datum/beam/arm
 	var/handedness = 0
 
@@ -66,10 +61,7 @@
 		finale()
 
 /obj/projectile/curse_hand/hel //Used in helbital's impure reagent
-	name = "Hel's grasp"
-	damage = 5
+	ammo_type = /datum/ammo/special/curse_hand/hel
 	paralyze = 0 //Lets not stun people!
-	speed = 1
-	range = 20
 	color = "#ff7e7e"//Tint it slightly
 

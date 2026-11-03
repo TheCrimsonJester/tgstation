@@ -1,20 +1,17 @@
 // 7.62x38mmR (Nagant Revolver)
 
 /obj/projectile/bullet/n762
-	name = "7.62x38mmR bullet"
-	damage = 60
+	ammo_type = /datum/ammo/bullet/revolver/n762
 
 // .50AE (Desert Eagle)
 
 /obj/projectile/bullet/a50ae
-	name = ".50AE bullet"
-	damage = 60
+	ammo_type = /datum/ammo/bullet/pistol/a50ae
 
 // .38 (Detective's Gun)
 
 /obj/projectile/bullet/c38
-	name = ".38 bullet"
-	damage = 25
+	ammo_type = /datum/ammo/bullet/revolver/c38
 	ricochets_max = 2
 	ricochet_chance = 50
 	ricochet_auto_aim_angle = 10
@@ -35,7 +32,7 @@
 	rip_time = 1 SECONDS
 
 /obj/projectile/bullet/c38/match
-	name = ".38 Match bullet"
+	ammo_type = /datum/ammo/bullet/revolver/c38/match
 	ricochets_max = 4
 	ricochet_chance = 100
 	ricochet_auto_aim_angle = 40
@@ -45,9 +42,7 @@
 	ricochet_decay_damage = 1
 
 /obj/projectile/bullet/c38/match/bouncy
-	name = ".38 Rubber bullet"
-	damage = 10
-	stamina = 30
+	ammo_type = /datum/ammo/bullet/revolver/c38/match/bouncy
 	ricochets_max = 6
 	ricochet_incidence_leeway = 0
 	ricochet_chance = 130
@@ -57,21 +52,17 @@
 	embed_type = null
 
 /obj/projectile/bullet/c38/match/true
-	name = ".38 True Strike bullet"
-	damage = 20
+	ammo_type = /datum/ammo/bullet/revolver/c38/match/true
 	ricochet_auto_aim_range = 4
 	ricochet_auto_aim_angle = 100
 	ricochet_incidence_leeway = 0
 	ricochet_shoots_firer = FALSE
 	shrapnel_type = null
 	embed_type = null
-	armour_penetration = 35
 
 // premium .38 ammo from cargo, weak against armor, lower base damage, but excellent at embedding and causing slice wounds at close range
 /obj/projectile/bullet/c38/dumdum
-	name = ".38 DumDum bullet"
-	damage = 15
-	weak_against_armour = TRUE
+	ammo_type = /datum/ammo/bullet/revolver/c38/dumdum
 	ricochets_max = 0
 	sharpness = SHARP_EDGED
 	wound_bonus = 20
@@ -91,8 +82,7 @@
 	rip_time = 1 SECONDS
 
 /obj/projectile/bullet/c38/trac
-	name = ".38 TRAC bullet"
-	damage = 10
+	ammo_type = /datum/ammo/bullet/revolver/c38/trac
 	ricochets_max = 0
 
 /obj/projectile/bullet/c38/trac/on_hit(atom/target, blocked = 0, pierce_hit)
@@ -109,8 +99,7 @@
 		imp.implant(M)
 
 /obj/projectile/bullet/c38/hotshot //similar to incendiary bullets, but do not leave a flaming trail
-	name = ".38 Hot Shot bullet"
-	damage = 20
+	ammo_type = /datum/ammo/bullet/revolver/c38/hotshot
 	ricochets_max = 0
 
 /obj/projectile/bullet/c38/hotshot/on_hit(atom/target, blocked = 0, pierce_hit)
@@ -121,8 +110,7 @@
 		criminal_scum.ignite_mob()
 
 /obj/projectile/bullet/c38/iceblox //see /obj/projectile/temp for the original code
-	name = ".38 Iceblox bullet"
-	damage = 20
+	ammo_type = /datum/ammo/bullet/revolver/c38/iceblox
 	var/temperature = 100
 	ricochets_max = 0
 
@@ -135,25 +123,19 @@
 // .357 (Syndie Revolver)
 
 /obj/projectile/bullet/c357
-	name = ".357 bullet"
-	icon_state = "bullet"
-	damage = 40
+	ammo_type = /datum/ammo/bullet/revolver/c357
 
 /obj/projectile/bullet/c357/phasic
-	name = ".357 phasic bullet"
-	icon_state = "gaussphase"
-	damage = 35
-	armour_penetration = 100
+	ammo_type = /datum/ammo/bullet/revolver/c357/phasic
 	projectile_phasing =  PASSTABLE | PASSGLASS | PASSGRILLE | PASSCLOSEDTURF | PASSMACHINE | PASSSTRUCTURE | PASSDOORS
 
 /obj/projectile/bullet/c357/heartseeker
-	name = ".357 heartseeker bullet"
-	icon_state = "gauss"
+	ammo_type = /datum/ammo/bullet/revolver/c357/heartseeker
 	homing_turn_speed = 120
 
 // admin only really, for ocelot memes
 /obj/projectile/bullet/c357/match
-	name = ".357 match bullet"
+	ammo_type = /datum/ammo/bullet/revolver/c357/match
 	ricochets_max = 5
 	ricochet_chance = 140
 	ricochet_auto_aim_angle = 50
@@ -163,12 +145,9 @@
 
 //gatfruit
 /obj/projectile/bullet/pea
-	name = "pea bullet"
-	damage = 15
-	weak_against_armour = TRUE
+	ammo_type = /datum/ammo/bullet/revolver/pea
 	ricochets_max = 3
 	ricochet_chance = 100
-	icon_state = "pea"
 
 /obj/projectile/bullet/pea/Initialize(mapload)
 	. = ..()

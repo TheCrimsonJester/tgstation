@@ -1,7 +1,5 @@
 /obj/projectile/bullet/cannonball
-	name = "cannonball"
-	icon_state = "cannonball"
-	damage = 110 //gets set to 100 before first mob impact.
+	ammo_type = /datum/ammo/bullet/heavy/cannonball
 	sharpness = NONE
 	wound_bonus = 0
 	projectile_piercing = ALL
@@ -41,29 +39,24 @@
 	return ..()
 
 /obj/projectile/bullet/cannonball/explosive
-	name = "explosive shell"
+	ammo_type = /datum/ammo/bullet/heavy/cannonball/explosive
 	color = COLOR_RED
 	projectile_piercing = NONE
-	damage = 40 //set to 30 before first mob impact, but they're gonna be gibbed by the explosion
 
 /obj/projectile/bullet/cannonball/explosive/on_hit(atom/target, blocked = 0, pierce_hit)
 	explosion(target, devastation_range = 2, heavy_impact_range = 3, light_impact_range = 4, explosion_cause = src)
 	. = ..()
 
 /obj/projectile/bullet/cannonball/emp
-	name = "malfunction shot"
-	icon_state = "emp_cannonball"
+	ammo_type = /datum/ammo/bullet/heavy/cannonball/emp
 	projectile_piercing = NONE
-	damage = 15 //very low
 
 /obj/projectile/bullet/cannonball/emp/on_hit(atom/target, blocked = 0, pierce_hit)
 	empulse(src, 4, 10, emp_source = src)
 	. = ..()
 
 /obj/projectile/bullet/cannonball/biggest_one
-	name = "\"The Biggest One\""
-	icon_state = "biggest_one"
-	damage = 70 //low pierce
+	ammo_type = /datum/ammo/bullet/heavy/cannonball/biggest_one
 
 /obj/projectile/bullet/cannonball/biggest_one/on_hit(atom/target, blocked = 0, pierce_hit)
 	if(projectile_piercing == NONE)
@@ -71,30 +64,22 @@
 	. = ..()
 
 /obj/projectile/bullet/cannonball/trashball
-	name = "trashball"
-	icon_state = "trashball"
-	damage = 90 //better than the biggest one but no explosion, so kinda just a worse normal cannonball
+	ammo_type = /datum/ammo/bullet/heavy/cannonball/trashball
 
 /obj/projectile/bullet/cannonball/meteorslug
-	name = "meteorslug"
+	ammo_type = /datum/ammo/bullet/heavy/cannonball/meteorslug
 	icon = 'icons/obj/meteor.dmi'
-	icon_state = "small"
-	damage = 40 //REALLY not as bad as a real cannonball but they'll fucking hurt
 	paralyze = 1 SECONDS //The original stunned, okay?
 	knockdown = 8 SECONDS
 	stutter = null
 	stop_piercing_threshold = 10
 	object_damage_decreases = TRUE
 	object_damage_decrease_on_hit = 40
-	range = 7 //let's keep it a bit sane, okay?
 
 
 /// Mounted ballista projectile, not exactly a cannonball but it's close enough
 /obj/projectile/bullet/ballista_spear
-	name = "ballista spear"
-	icon_state = "ballista_spear"
-	damage = 60
-	speed = 3
+	ammo_type = /datum/ammo/bullet/heavy/ballista_spear
 	catastropic_dismemberment = TRUE
 	projectile_piercing = PASSMOB
 	dismemberment = 3
@@ -102,7 +87,6 @@
 	shrapnel_type = null
 	wound_bonus = 40
 	exposed_wound_bonus = 30
-	damage_type = BRUTE
 
 /// Set statistics based on provided spear
 /obj/projectile/bullet/ballista_spear/proc/attach_spear(obj/item/spear)
@@ -113,11 +97,7 @@
 
 /// An even bigger ballista projectile designed for taking down monsters
 /obj/projectile/bullet/ballista_spear/dragonator
-	name = "dragon-slaying ballista spear"
-	icon_state = "ballista_spear_dragon"
-	damage = 120
-	speed = 4
-	armour_penetration = 25
+	ammo_type = /datum/ammo/bullet/heavy/ballista_spear/dragonator
 	wound_bonus = 15
 	exposed_wound_bonus = 30
 
@@ -130,9 +110,7 @@
 
 /// A "spear" that's not sharp but has a different surprise on the end
 /obj/projectile/bullet/ballista_spear/prod
-	name = "ballistic prod"
-	icon_state = "ballista_prod"
-	damage = 40
+	ammo_type = /datum/ammo/bullet/heavy/ballista_spear/prod
 	projectile_piercing = NONE
 	dismemberment = 0
 	sharpness = NONE

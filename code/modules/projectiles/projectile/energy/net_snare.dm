@@ -1,10 +1,6 @@
 /obj/projectile/energy/snare
-	name = "energy snare"
-	icon_state = "e_netting"
-	damage = 30
-	damage_type = STAMINA
+	ammo_type = /datum/ammo/energy/snare
 	hitsound = 'sound/items/weapons/taserhit.ogg'
-	range = 10
 
 /obj/projectile/energy/snare/Initialize(mapload)
 	. = ..()

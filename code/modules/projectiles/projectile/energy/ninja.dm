@@ -1,7 +1,3 @@
 /obj/projectile/energy/dart //ninja throwing dart
-	name = "dart"
-	icon_state = "toxin"
-	damage = 5
-	damage_type = TOX
+	ammo_type = /datum/ammo/energy/dart
 	paralyze = 100
-	range = 7

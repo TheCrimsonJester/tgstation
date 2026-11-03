@@ -1,8 +1,8 @@
 // 9mm (Makarov and Stechkin APS)
+// Bullet stats are centralised in the ammo datums under ammo_types/pistol_ammo.dm.
 
 /obj/projectile/bullet/c9mm
-	name = "9mm bullet"
-	damage = 30
+	ammo_type = /datum/ammo/bullet/pistol/c9mm
 	embed_type = /datum/embedding/bullet/c9mm
 
 /datum/embedding/bullet/c9mm
@@ -16,51 +16,37 @@
 	rip_time = 1 SECONDS
 
 /obj/projectile/bullet/c9mm/ap
-	name = "9mm armor-piercing bullet"
-	damage = 25
-	armour_penetration = 40
+	ammo_type = /datum/ammo/bullet/pistol/c9mm/ap
 	embed_type = null
 	shrapnel_type = null
 
 /obj/projectile/bullet/c9mm/hp
-	name = "9mm hollow-point bullet"
-	damage = 40
-	weak_against_armour = TRUE
+	ammo_type = /datum/ammo/bullet/pistol/c9mm/hp
 
 /obj/projectile/bullet/incendiary/c9mm
-	name = "9mm incendiary bullet"
-	damage = 25
+	ammo_type = /datum/ammo/bullet/pistol/c9mm/incendiary
 	fire_stacks = 2
 
 // 10mm
 
 /obj/projectile/bullet/c10mm
-	name = "10mm bullet"
-	damage = 40
+	ammo_type = /datum/ammo/bullet/pistol/c10mm
 
 /obj/projectile/bullet/c10mm/ap
-	name = "10mm armor-piercing bullet"
-	damage = 35
-	armour_penetration = 40
+	ammo_type = /datum/ammo/bullet/pistol/c10mm/ap
 
 /obj/projectile/bullet/c10mm/hp
-	name = "10mm hollow-point bullet"
-	damage = 50
-	weak_against_armour = TRUE
+	ammo_type = /datum/ammo/bullet/pistol/c10mm/hp
 
 /obj/projectile/bullet/incendiary/c10mm
-	name = "10mm incendiary bullet"
-	damage = 35
+	ammo_type = /datum/ammo/bullet/pistol/c10mm/incendiary
 	fire_stacks = 3
 
 // .160 Smart
 
 /obj/projectile/bullet/c160smart
-	name = ".160 smart bullet"
-	icon_state = "smartgun"
-	damage = 10
+	ammo_type = /datum/ammo/bullet/pistol/c160smart
 	embed_type = /datum/embedding/bullet/c160smart
-	speed = 0.5
 	homing_turn_speed = 5
 	homing_inaccuracy_min = 4
 	homing_inaccuracy_max = 10

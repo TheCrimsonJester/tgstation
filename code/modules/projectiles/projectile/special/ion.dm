@@ -1,9 +1,5 @@
 /obj/projectile/ion
-	name = "ion bolt"
-	icon_state = "ion"
-	damage = 0
-	damage_type = BURN
-	armor_flag = ENERGY
+	ammo_type = /datum/ammo/special/ion
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/ion
 	var/emp_radius = 1
 

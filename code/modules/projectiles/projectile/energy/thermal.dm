@@ -1,10 +1,5 @@
 /obj/projectile/energy/inferno
-	name = "molten nanite bullet"
-	icon_state = "infernoshot"
-	damage = 20
-	damage_type = BURN
-	armor_flag = ENERGY
-	armour_penetration = 10
+	ammo_type = /datum/ammo/energy/inferno
 	reflectable = NONE
 	wound_bonus = 0
 	exposed_wound_bonus = 10
@@ -27,12 +22,7 @@
 		playsound(cold_target, 'sound/items/weapons/sear.ogg', 30, TRUE, -1)
 
 /obj/projectile/energy/cryo
-	name = "frozen nanite bullet"
-	icon_state = "cryoshot"
-	damage = 20
-	damage_type = BRUTE
-	armour_penetration = 10
-	armor_flag = ENERGY
+	ammo_type = /datum/ammo/energy/cryo
 	sharpness = SHARP_POINTY //it's a big ol' shard of ice
 	reflectable = NONE
 	wound_bonus = 0

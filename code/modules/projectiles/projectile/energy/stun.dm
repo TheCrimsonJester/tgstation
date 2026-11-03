@@ -1,9 +1,7 @@
 /obj/projectile/energy/electrode
-	name = "electrode"
-	icon_state = "spark"
+	ammo_type = /datum/ammo/energy/electrode
 	color = COLOR_YELLOW
 	hitsound = 'sound/items/weapons/taserhit.ogg'
-	range = 5
 	reflectable = FALSE
 	tracer_type = /obj/effect/projectile/tracer/stun
 	muzzle_type = /obj/effect/projectile/muzzle/stun

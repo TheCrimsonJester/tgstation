@@ -1,11 +1,6 @@
 /obj/projectile/neurotoxin
-	name = "neurotoxin spit"
-	icon_state = "neurotoxin"
-	damage = 65
-	damage_type = STAMINA
-	armor_flag = BIO
+	ammo_type = /datum/ammo/special/neurotoxin
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/neurotoxin
-	armour_penetration = 50
 
 /obj/projectile/neurotoxin/on_hit(atom/target, blocked = 0, pierce_hit)
 	if(isalien(target))
@@ -13,17 +8,12 @@
 	return ..()
 
 /obj/projectile/neurotoxin/damaging //for ai controlled aliums
-	damage = 30
+	ammo_type = /datum/ammo/special/neurotoxin/damaging
 	paralyze = 0 SECONDS
 
 /obj/projectile/ink_spit
-	name = "ink spit"
-	icon_state = "ink_spit"
-	damage = 5
-	damage_type = STAMINA
-	armor_flag = BIO
+	ammo_type = /datum/ammo/special/ink_spit
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/ink_spit
-	armour_penetration = 50
 	hitsound = /datum/sound_effect/desecration
 	hitsound_wall = /datum/sound_effect/desecration
 

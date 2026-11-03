@@ -1,14 +1,8 @@
 #define MULTIPLY_SPEED 0.8
 
 /obj/projectile/energy/photon
-	name = "photon bolt"
-	icon_state = "solarflare"
-	damage_type = STAMINA
-	armor_flag = ENERGY
+	ammo_type = /datum/ammo/energy/photon
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
-	damage = 5 //It's literally a weaker tesla bolt, which is already weak. Don't worry, we'll fix that.
-	range = 20
-	speed = 1
 	projectile_piercing = PASSMOB
 	light_color = LIGHT_COLOR_DEFAULT
 	light_system = OVERLAY_LIGHT
